@@ -44,12 +44,13 @@ public class StackoverflowControllerIT {
     @Test
     public void testGetListOfProviders() throws Exception {
         //test
-        ResponseEntity<List<StackoverflowWebsite>> responceEntity = restTemplate.exchange("http://localhost:8090/api/stackoverflow",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<StackoverflowWebsite>>() {
-                });
-        List<StackoverflowWebsite> actualList = responceEntity.getBody();
+        ResponseEntity<List<StackoverflowWebsite>> responseEntity =
+                restTemplate.exchange("http://localhost:8090/api/stackoverflow",
+                        HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<List<StackoverflowWebsite>>() {
+                        });
+        List<StackoverflowWebsite> actualList = responseEntity.getBody();
         //validate
         assertThat(actualList.size(), is(2));
         List<String> actualIds = actualList.stream()
